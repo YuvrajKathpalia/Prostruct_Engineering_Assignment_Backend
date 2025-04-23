@@ -2,8 +2,9 @@
   "name": "prostruct",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "api-contacts.js",
   "scripts": {
+    "start": "node api-contacts.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -12,6 +13,7 @@
   "dependencies": {
     "@hubspot/api-client": "^12.0.1",
     "axios": "^1.8.4",
+    "cors": "^2.8.5",
     "env": "^0.0.2",
     "express": "^5.1.0",
     "require": "^2.4.20"

@@ -1,13 +1,18 @@
 const express = require('express');
 const axios = require('axios');
 const hubspot = require('@hubspot/api-client');
+const cors = require('cors');
 
 const app = express();
+app.use(cors());
+
 const PORT = 3000;
 
-const CLIENT_ID = '30ebaa17-e873-4266-95a5-9630948bb1e9';
-const CLIENT_SECRET = '78b9a5d8-9780-411a-bb05-a2a98ba32d16';
-const APP_ID = '11436798';
+require('dotenv').config();
+
+const CLIENT_ID = process.env.HUBSPOT_CLIENT_ID;
+const CLIENT_SECRET = process.env.HUBSPOT_CLIENT_SECRET;
+
 const REDIRECT_URI = 'http://localhost:3000/oauth-callback';
 const SCOPES = 'crm.objects.appointments.write crm.objects.carts.write crm.objects.companies.write crm.objects.courses.write crm.objects.custom.write crm.objects.deals.write crm.objects.invoices.write crm.objects.subscriptions.write crm.objects.listings.write crm.objects.orders.write crm.objects.users.write crm.pipelines.orders.write crm.schemas.appointments.write crm.schemas.carts.write crm.schemas.companies.write crm.schemas.contacts.write crm.schemas.courses.write crm.schemas.deals.write crm.schemas.invoices.write crm.schemas.listings.write crm.schemas.orders.write crm.schemas.services.write crm.schemas.subscriptions.write e-commerce oauth tickets crm.objects.contacts.read crm.schemas.custom.read crm.objects.contacts.write';
 
