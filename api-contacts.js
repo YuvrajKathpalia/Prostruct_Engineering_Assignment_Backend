@@ -8,15 +8,17 @@ require('dotenv').config();
 const app = express();
 const port = process.env.PORT || 3000;
 const hubspot = new hubspotClient.Client();
-const TOKEN_FILE = path.join(__dirname, 'tokens.json');
+//const TOKEN_FILE = path.join(__dirname, 'tokens.json');
 
 app.use(cors());
 app.use(express.json());
 
+const { kv } = require('@vercel/kv');
+
 const getTokens = async () => {
   try {
-    const data = await fs.readFile(TOKEN_FILE, 'utf8');
-    return JSON.parse(data);
+    const tokens = await kv.get('hubspot_tokens');
+    return tokens || { accessToken: null, refreshToken: process.env.HUBSPOT_REFRESH_TOKEN, expiresAt: null };
   } catch (err) {
     console.error('Error reading tokens:', err.message);
     return { accessToken: null, refreshToken: process.env.HUBSPOT_REFRESH_TOKEN, expiresAt: null };
@@ -25,7 +27,7 @@ const getTokens = async () => {
 
 const saveTokens = async (tokens) => {
   try {
-    await fs.writeFile(TOKEN_FILE, JSON.stringify(tokens, null, 2));
+    await kv.set('hubspot_tokens', tokens);
   } catch (err) {
     console.error('Error saving tokens:', err.message);
   }
