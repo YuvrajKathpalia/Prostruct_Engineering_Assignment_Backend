@@ -1,0 +1,19 @@
+{
+  "name": "prostruct",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@hubspot/api-client": "^12.0.1",
+    "axios": "^1.8.4",
+    "env": "^0.0.2",
+    "express": "^5.1.0",
+    "require": "^2.4.20"
+  }
+}
